@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no, email=no" />
+	<meta content="width=device-width, initial-scale=1,maximum-scale=1,maximum-scale=1, user-scalable=no" name="viewport">
+	<title>Document</title>
+	<style>
+		html{
+			font-size: 16px;
+		}
+		body{
+			margin: 0;
+			padding: 0;
+			font-family: Microsoft YaHei;
+		}
+		.sbox{
+			width: 120%;
+			height: 50px;
+			min-width: 320px;
+			background-color: #eee;
+			color: #999;
+			-webkit-transition:all 0.3s linear;
+		}
+		.box{
+			border-top:1px solid #ccc;
+			border-bottom:1px solid #ccc;
+			margin-top: 10px;
+			overflow: hidden;
+		}
+		.clear{
+			clear: both;
+		}
+		.item{
+			width: 23.4375rem;
+			height: 100%;
+			float: left;
+			line-height: 30px;
+			padding: 10px;
+			box-sizing:border-box;
+		}
+		.item_left{
+			float: left;
+		}
+		.item_right{
+			float: right;
+		}
+		.btn{
+			width: 4.6875rem;
+			height: 100%;
+			float: left;
+			line-height: 50px;
+			text-align: center;
+			color: #fff;
+			background-color: #f00; 
+		}
+		.selected{
+			-webkit-transform: translate(-16.66666%,0);
+			-webkit-transition:all 0.3s linear;
+			overflow: visible;
+		}
+		.ui-loader {
+    display: none;
+}
+	</style>
+</head>
+<body>
+	<div class="bigbox">
+	</div>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.4.5.js"></script>
+	<script>
+	// font-size
+	var fontSize=16;
+	var elm=document.documentElement;
+	    elm.style.fontSize=fontSize*(elm.clientWidth/375)+"px";
+	// data
+		var data=[
+			{names:'收货人姓名',phone:'收货人18335830721'},
+			{names:'收货人姓名',phone:'收货人18335830721'},
+			{names:'收货人姓名',phone:'收货人18335830721'},
+			{names:'收货人姓名',phone:'收货人18335830721'},
+			{names:'收货人姓名',phone:'收货人18335830721'},
+			{names:'收货人姓名',phone:'收货人18335830721'},
+			{names:'收货人姓名',phone:'收货人18335830721'},
+			{names:'收货人姓名',phone:'收货人18335830721'},
+			{names:'收货人姓名',phone:'收货人18335830721'},
+			{names:'收货人姓名',phone:'收货人18335830721'},
+			{names:'收货人姓名',phone:'收货人18335830721'},
+			{names:'收货人姓名',phone:'收货人18335830721'}
+		];
+
+		data.forEach(function(value,index){
+			$(".bigbox").append('<div class="box" id=box'+index+'><div class="sbox" > <div class="item"> <div class="item_left">'+value.names+'</div> <div class="item_right">'+value.phone+'&nbsp;&gt;</div> <div class="clear"></div> </div> <div class="btn">Delete</div> </div></div>')
+		})
+		$(".box").on('swipeleft',function(){
+			$(this).find(".sbox").addClass("selected").parents(".box").siblings().find(".sbox").removeClass("selected");
+			$(this).find(".btn").on("tap",function(){
+				var a=$(this).parents(".box").attr("id");
+				$("#"+a).css({border:"0"})
+				$("#"+a).stop().animate({height:'0'},300,function(){
+					$(this).remove();
+				})
+			})
+		}).on('swiperight',function(){
+			$(this).find(".sbox").removeClass("selected")
+		})
+		
+	</script>
+</body>
+</html>
